@@ -12,9 +12,6 @@ RUN yum -y update &&  \
 
 RUN cd /opt
 
-
-
-
 ################## start OpenJDK ###################### 
 #
 RUN yum -y update &&  \
