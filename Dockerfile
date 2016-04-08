@@ -53,7 +53,5 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
-RUN systemctl enable tomcat.service
-
 EXPOSE 8080
 CMD ["/usr/sbin/init"]
