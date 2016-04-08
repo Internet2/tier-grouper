@@ -1,0 +1,16 @@
+#
+# invoke mysql and create a new database in the directory
+#    ./mysql_persistant_data
+# with a grouper user and grouper database
+#
+# run this once when you first install things
+#
+
+
+sudo docker run --name mysqlserver  \
+   -v `pwd`/mysql_persistant_data:/var/lib/mysql \
+   -e MYSQL_ROOT_PASSWORD=changeme \
+   -e MYSQL_USER=grouper           \
+   -e MYSQL_PASSWORD=changeme      \
+   -e MYSQL_DATABASE=grouper       \
+   -d mysql:5.7 

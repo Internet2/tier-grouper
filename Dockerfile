@@ -36,6 +36,8 @@ RUN mkdir /home/grouper/2.2.2 ; \
     cd /home/grouper/2.2.2/ ; \
     wget http://software.internet2.edu/grouper/release/2.2.2/grouperInstaller.jar
 
+USER root
+
 #
 # things we need assuming we end up running systemd
 #
