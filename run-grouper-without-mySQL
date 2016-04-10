@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# run file for Centos+systemd invoked from Ubuntu 14.04 host OS
+#
+sudo docker run -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+         -v /tmp/$(mktemp -d):/run  \
+         -p 0.0.0.0:8080:8080  grouper

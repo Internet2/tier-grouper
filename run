@@ -1,6 +1,13 @@
+#!/bin/bash
 #
-# run file for Centos+systemd invoked from Ubuntu 14.04 host OS
+# run the mySQL servera container
 #
-sudo docker run -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-         -v /tmp/$(mktemp -d):/run  \
-         -p 0.0.0.0:8080:8080  grouper
+./run-mysql
+#
+# run the grouper container and link it to the mySQL server container
+#
+sudo docker run --name grouper --link mysqlserver\:grouper \
+        -ti -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+        -v /tmp/$(mktemp -d):/run  \
+        -p 0.0.0.0:8080:8080  grouper
+

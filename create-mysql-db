@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 #  create an initial (empty) database for Grouper 
 #  and set an initial password for the mysql root and grouper users

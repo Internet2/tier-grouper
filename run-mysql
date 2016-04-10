@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # run file mySQL server used by Grouper
 #
@@ -5,7 +6,7 @@
 # the database files are located at 
 #       `pwd`/mysql_persistant_data:/var/lib/mysql
 # If you don't already have a populated database, run the script
-#       initialize-mysql-db
+#       create-mysql-db
 # to create one
 #
 
