@@ -5,12 +5,20 @@ USER root
 
 RUN yum -y update &&  \
     yum -y install \
-	         dos2unix \
-             wget \
-             unzip; \
+	       dos2unix \
+           wget \
+           unzip; \
     yum clean all
 
 RUN cd /opt
+
+#
+# set the locale
+#
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+
 
 ################## start OpenJDK ###################### 
 #
@@ -24,6 +32,20 @@ RUN yum -y update &&  \
     yum clean all
 #
 ################## end OpenJDK ################## 
+
+#
+# try to make sure we use UTF for the JVM 
+#
+ENV JAVA_TOOL_OPTIONS "-Dfile.encoding=UTF-8 " 
+
+#
+# mysql connector and expect
+#
+RUN yum -y update &&  \
+    yum -y install \
+             mysql-connector-java ; \
+			 expect ; \
+    yum clean all
 
 #
 # grouper
