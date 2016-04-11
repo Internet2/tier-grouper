@@ -49,6 +49,7 @@ something like this:
 
 ```
 sudo docker run --name mysqlserver  \
+         -v `pwd`/mysqlconf.d:/etc/mysql/conf.d \
         -e MYSQL_ROOT_PASSWORD=changeme \
         -v /your-special-location-goes-right-here:/var/lib/mysql \
         -d mysql:5.7  \
@@ -63,6 +64,5 @@ Now that you have a database, run both mysql and grouper containers with this sc
 ```
 ./run
 ```
-which starts the mySQL container, then runs the grouper container and links the two containers 
-so that Grouper can talk to the database.
+which starts the mySQL container, then runs the grouper container.
 
