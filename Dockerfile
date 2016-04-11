@@ -38,6 +38,10 @@ RUN mkdir /home/grouper/2.2.2 ; \
 
 USER root
 
+RUN export JAVA_HOME=/usr/java/latest ; \
+    cd /home/grouper/2.2.2/ ; \
+	expect /build-configs/grouper-install-expect.exp
+
 #
 # things we need assuming we end up running systemd
 #
@@ -51,6 +55,8 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
+
+RUN systemctl enable tomcat.service
 
 EXPOSE 8080
 CMD ["/usr/sbin/init"]
