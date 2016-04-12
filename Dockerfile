@@ -78,7 +78,12 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
-RUN systemctl enable tomcat.service
+#
+# add a systemd service so Grouper starts automatically
+#
+RUN cp /build-configs/grouper.service /etc/systemd/system/grouper.service ; \
+    chmod 664 /etc/systemd/system/grouper.service
+RUN systemctl enable grouper.service
 
 EXPOSE 8080
 CMD ["/usr/sbin/init"]

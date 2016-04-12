@@ -1,0 +1,12 @@
+[Unit]
+Description=Grouper
+After=network.target
+
+[Service]
+ExecStart=/home/grouper/2.2.2/apache-tomcat-6.0.35/bin/startup.sh
+ExecStop=/home/grouper/2.2.2/apache-tomcat-6.0.35/bin/shutdown.sh
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
