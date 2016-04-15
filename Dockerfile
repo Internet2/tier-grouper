@@ -43,7 +43,7 @@ ENV JAVA_TOOL_OPTIONS "-Dfile.encoding=UTF-8 "
 #
 RUN yum -y update &&  \
     yum -y install \
-             mysql-connector-java ; \
+             mysql-connector-java  \
 			 expect ; \
     yum clean all
 

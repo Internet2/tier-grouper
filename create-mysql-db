@@ -4,6 +4,10 @@
 #  and set an initial password for the mysql root and grouper users
 #
 
+# first remove whatver is in the directory because mysql will not touch it if there are files present
+rm -rf `pwd`/mysql_persistant_data/*
+
+# now build an empty database
 sudo docker run --name mysqlserver  \
  -v `pwd`/mysqlconf.d:/etc/mysql/conf.d \
  -e MYSQL_ROOT_PASSWORD=changeme \
