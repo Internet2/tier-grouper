@@ -6,9 +6,11 @@ We need both a Grouper container and a mysql database server, so we
 will run two containers - one for grouper and one for mysql. 
 
 Because the Grouper application installer from the Grouper developers
-depends on the database being present when the app is installed, we 
-need to create the database first and have the database container 
-running *before* starting the build script for the grouper container. 
+depends on the database being present and running when the app is installed, 
+we need to create the database first and have the database container 
+running *before* starting the build script for the grouper container. The
+database also has to be running at a predictable location since Grouper's
+isntall script asks for a hostname for the database.
 
 *Step 1:* Create a mysql database, and persist the data in the directory mysql_persistent_data
 Note you should change the default root password for the mysql database and the
@@ -35,12 +37,13 @@ sudo docker run --name mysqlserver  \
 ```
 
 *Step 2:* Now that there is a database and the mysql container is still running from
-step 1, we can prepare to build the Grouper docker container. The Grouper app installer was
-packaged as an interactive .war file which asks many questions. To automate the
-build, we are using an expect script which can be found here:
+step 1, we can prepare to build the Grouper docker container. Note that our install assumes that the database container is running at the IP address 172.17.0.2 - if you want to build with a different address, update this in the expect script located in
 ```
-./build-configs/grouper-install-expect.exp
+configs/grouper-install-expect.exp
 ```
+Why an expect script? The Grouper app installer was packaged as an interactive .war 
+file which asks many questions, so we automated the build with an expect script.
+
 
 For those interested, the expect script was created by running _autoexpect_ on a 
 partially installed Grouper environment like this:
@@ -66,5 +69,5 @@ Now that you have a database and a Grouper container, run both mysql and grouper
 ```
 ./run
 ```
-which starts the mySQL container, then runs the grouper container.
+which starts the mySQL container, then runs the grouper container. 
 

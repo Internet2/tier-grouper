@@ -14,7 +14,7 @@ sudo docker run --name mysqlserver  \
     -v `pwd`/mysqlconf.d:/etc/mysql/conf.d \
 	-e MYSQL_ROOT_PASSWORD=changeme \
 	-v `pwd`/mysql_persistant_data:/var/lib/mysql \
-    -p 0.0.0.0:3306:3306 \
+    -p 127.0.0.1:3306:3306 \
 	-d mysql:5.7      \
 	     --character-set-server=utf8     \
 	     --collation-server=utf8_bin     \
