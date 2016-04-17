@@ -71,3 +71,22 @@ Now that you have a database and a Grouper container, run both mysql and grouper
 ```
 which starts the mySQL container, then runs the grouper container. 
 
+In the simplest case, you can see if things are running by pointing your 
+web browser at
+```
+http://your-server-here:8080/grouper
+```
+You will be promted to log in. If you haven't changed the defaults from the build
+process, you can use the username 'GrouperSystem' and the password 'changeme'
+to get the the web user interface.
+
+### troubleshooting
+
+If the containers build, but you cannot get a response from the Grouper web user
+interface, you might have run into a firewall issue. On Centos 7 you can open port 8080
+and verify that it is open like this:
+```
+firewall-cmd --zone=public --add-port=8080/tcp --permanent
+firewall-cmd --reload
+firewall-cmd --zone=public  --list-ports
+```
